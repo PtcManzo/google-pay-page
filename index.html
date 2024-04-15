@@ -55,36 +55,30 @@
 <body>
     <div class="container">
         <h1>Night Housie Game</h1>
-        <p>Click the button below to proceed to payment:</p>
-        <button onclick="redirectToGooglePay()">Proceed to Pay</button>
+        <p>Select an amount to buy tickets:</p>
+        <button onclick="redirectToGooglePay(100)">Rs 100 - Buy 1 Get 1 Free</button>
+        <button onclick="redirectToGooglePay(140)">Rs 140 - Buy 2 Get 2 Free</button>
+        <button onclick="redirectToGooglePay(170)">Rs 170 - Buy 3 Get 3 Free</button>
 
-        <div id="instructions-android" class="instructions">
+        <div id="instructions" class="instructions">
             <p>To proceed with the payment:</p>
             <ol>
-                <li>Open the Google Pay app on your Android device.</li>
-                <li>Select the option to send money.</li>
-                <li>Enter the UPI ID: <strong>kitlangkisutnga111@okaxis</strong></li>
-                <li>Enter the amount and complete the payment.</li>
-            </ol>
-        </div>
-        <div id="instructions-ios" class="instructions">
-            <p>To proceed with the payment:</p>
-            <ol>
-                <li>Open the Google Pay app on your iOS device.</li>
-                <li>Select the option to send money.</li>
-                <li>Enter the UPI ID: <strong>kitlangkisutnga111@okaxis</strong></li>
-                <li>Enter the amount and complete the payment.</li>
+                <li>Choose your preferred UPI payment app.</li>
+                <li>Authorize the transaction in the UPI app.</li>
             </ol>
         </div>
     </div>
 
     <script>
-        function redirectToGooglePay() {
-            // Construct the Google Pay UPI URL
-            var url = "upi://pay?pa=kitlangkisutnga111@okaxis&pn=RecipientName&cu=INR";
+        function redirectToGooglePay(amount) {
+            // Construct the deep link for UPI payment
+            var url = "upi://pay?pa=kitlangkisutnga111@okaxis&pn=RecipientName&am=" + amount + "&cu=INR";
 
-            // Redirect to the Google Pay URL
+            // Open the deep link
             window.location.href = url;
+
+            // Display instructions after redirection (optional)
+            document.getElementById("instructions").style.display = "block";
         }
     </script>
 </body>
