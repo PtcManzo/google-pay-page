@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Pay Payment</title>
+</head>
+<body>
+    <h1>Select an amount to pay:</h1>
+    <button onclick="redirectToGooglePay(100)">Pay Rs 100</button>
+    <button onclick="redirectToGooglePay(140)">Pay Rs 140</button>
+    <button onclick="redirectToGooglePay(170)">Pay Rs 170</button>
+
+    <script>
+        function redirectToGooglePay(amount) {
+            // Change 'your-upi-id' to your actual UPI ID
+            var upiID = 'kitlangkisutnga111@okaxis';
+            var url = 'https://pay.google.com/payments/u/0/send/request?authuser=0&utm_source=google_pay&utm_medium=request_payment&utm_campaign=transaction_request&requestId=';
+
+            // Append amount and UPI ID to the URL
+            url += 'CAYHkO' + amount + upiID;
+
+            // Redirect to the Google Pay URL
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>
