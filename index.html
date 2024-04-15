@@ -42,7 +42,7 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        #instructions-android, #instructions-ios {
+        .instructions {
             display: none;
             background-color: #fff;
             border: 1px solid #ccc;
@@ -60,21 +60,33 @@
         <button onclick="redirectToGooglePay(140)">Rs 140 - Buy 2 Get 2 Free</button>
         <button onclick="redirectToGooglePay(170)">Rs 170 - Buy 3 Get 3 Free</button>
 
-        <div id="instructions-android">Please open the Google Pay app on your Android device and complete the payment using the UPI ID: kitlangkisutnga111@okaxis</div>
-        <div id="instructions-ios">Please open the Google Pay app on your iOS device and complete the payment using the UPI ID: kitlangkisutnga111@okaxis</div>
+        <div id="instructions-android" class="instructions">
+            <p>To proceed with the payment:</p>
+            <ol>
+                <li>Open the Google Pay app on your Android device.</li>
+                <li>Select the option to send money.</li>
+                <li>Enter the UPI ID: <strong>kitlangkisutnga111@okaxis</strong></li>
+                <li>Enter the amount and complete the payment.</li>
+            </ol>
+        </div>
+        <div id="instructions-ios" class="instructions">
+            <p>To proceed with the payment:</p>
+            <ol>
+                <li>Open the Google Pay app on your iOS device.</li>
+                <li>Select the option to send money.</li>
+                <li>Enter the UPI ID: <strong>kitlangkisutnga111@okaxis</strong></li>
+                <li>Enter the amount and complete the payment.</li>
+            </ol>
+        </div>
     </div>
 
     <script>
         function redirectToGooglePay(amount) {
-            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            // Construct the Google Pay UPI URL with the amount
+            var url = "upi://pay?pa=kitlangkisutnga111@okaxis&pn=RecipientName&am=" + amount + "&cu=INR";
 
-            if (/android/i.test(userAgent)) {
-                document.getElementById("instructions-android").style.display = "block";
-            } else if (/iPad|iPhone|iPod/i.test(userAgent)) {
-                document.getElementById("instructions-ios").style.display = "block";
-            } else {
-                alert("To make a payment, please open the Google Pay app on your device and use the UPI ID: kitlangkisutnga111@okaxis");
-            }
+            // Redirect to the Google Pay URL
+            window.location.href = url;
         }
     </script>
 </body>
