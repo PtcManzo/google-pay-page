@@ -70,11 +70,11 @@
 
     <script>
         function redirectToUPI() {
-            // Phone number of the recipient
-            var phoneNumber = '9366979617';
+            // UPI ID of the recipient
+            var upiID = 'kitlangkisutnga111@okaxis';
             
-            // Construct the Intent URI for UPI payment with phone number
-            var uri = 'upi://pay?pa=&pn=' + phoneNumber + '&cu=INR';
+            // Construct the Intent URI for UPI payment with UPI ID
+            var uri = 'upi://pay?pa=' + upiID + '&cu=INR';
 
             // Redirect to the Intent URI
             window.location.href = uri;
