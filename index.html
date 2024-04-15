@@ -3,28 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Pay Payment</title>
+    <title>Night Housie Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        p {
+            color: #666;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #instructions-android, #instructions-ios {
+            display: none;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Select an amount to pay:</h1>
-    <button onclick="redirectToGooglePay(100)">Pay Rs 100</button>
-    <button onclick="redirectToGooglePay(140)">Pay Rs 140</button>
-    <button onclick="redirectToGooglePay(170)">Pay Rs 170</button>
+    <div class="container">
+        <h1>Night Housie Game</h1>
+        <p>Select an amount to buy tickets:</p>
+        <button onclick="redirectToGooglePay(100)">Rs 100 - Buy 1 Get 1 Free</button>
+        <button onclick="redirectToGooglePay(140)">Rs 140 - Buy 2 Get 2 Free</button>
+        <button onclick="redirectToGooglePay(170)">Rs 170 - Buy 3 Get 3 Free</button>
 
-    <p id="instructions-android" style="display: none;">Please open the Google Pay app on your Android device and complete the payment using the UPI ID: kitlangkisutnga111@okaxis</p>
-    <p id="instructions-ios" style="display: none;">Please open the Google Pay app on your iOS device and complete the payment using the UPI ID: kitlangkisutnga111@okaxis</p>
+        <div id="instructions-android">Please open the Google Pay app on your Android device and complete the payment using the UPI ID: kitlangkisutnga111@okaxis</div>
+        <div id="instructions-ios">Please open the Google Pay app on your iOS device and complete the payment using the UPI ID: kitlangkisutnga111@okaxis</div>
+    </div>
 
     <script>
         function redirectToGooglePay(amount) {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-            // Check if the user agent indicates Android or iOS
             if (/android/i.test(userAgent)) {
                 document.getElementById("instructions-android").style.display = "block";
             } else if (/iPad|iPhone|iPod/i.test(userAgent)) {
                 document.getElementById("instructions-ios").style.display = "block";
             } else {
-                // For other devices or browsers, you can provide a generic message
                 alert("To make a payment, please open the Google Pay app on your device and use the UPI ID: kitlangkisutnga111@okaxis");
             }
         }
