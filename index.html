@@ -55,30 +55,29 @@
 <body>
     <div class="container">
         <h1>Night Housie Game</h1>
-        <p>Select an amount to buy tickets:</p>
-        <button onclick="redirectToGooglePay(100)">Rs 100 - Buy 1 Get 1 Free</button>
-        <button onclick="redirectToGooglePay(140)">Rs 140 - Buy 2 Get 2 Free</button>
-        <button onclick="redirectToGooglePay(170)">Rs 170 - Buy 3 Get 3 Free</button>
+        <p>Click the button below to proceed to payment:</p>
+        <button onclick="redirectToUPI()">Proceed to Pay</button>
 
-        <div id="instructions" class="instructions">
+        <div id="instructions-android" class="instructions">
             <p>To proceed with the payment:</p>
             <ol>
-                <li>Choose your preferred UPI payment app.</li>
-                <li>Authorize the transaction in the UPI app.</li>
+                <li>Your UPI payment app will be automatically opened.</li>
+                <li>Choose your preferred UPI payment app from the list.</li>
+                <li>Authorize the transaction.</li>
             </ol>
         </div>
     </div>
 
     <script>
-        function redirectToGooglePay(amount) {
-            // Construct the deep link for UPI payment
-            var url = "upi://pay?pa=kitlangkisutnga111@okaxis&pn=RecipientName&am=" + amount + "&cu=INR";
+        function redirectToUPI() {
+            // Phone number of the recipient
+            var phoneNumber = '9366979617';
+            
+            // Construct the Intent URI for UPI payment with phone number
+            var uri = 'upi://pay?pn=' + phoneNumber + '&cu=INR';
 
-            // Open the deep link
-            window.location.href = url;
-
-            // Display instructions after redirection (optional)
-            document.getElementById("instructions").style.display = "block";
+            // Redirect to the Intent URI
+            window.location.href = uri;
         }
     </script>
 </body>
