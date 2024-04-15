@@ -13,12 +13,8 @@
 
     <script>
         function redirectToGooglePay(amount) {
-            // Change 'your-upi-id' to your actual UPI ID
-            var upiID = 'kitlangkisutnga111@okaxis';
-            var url = 'https://pay.google.com/payments/u/0/send/request?authuser=0&utm_source=google_pay&utm_medium=request_payment&utm_campaign=transaction_request&requestId=';
-
-            // Append amount and UPI ID to the URL
-            url += 'CAYHkO' + amount + upiID;
+            // Construct the Google Pay UPI URL with the amount
+            var url = "upi://pay?pa=kitlangkisutnga111@okaxis&pn=RecipientName&am=" + amount + "&cu=INR";
 
             // Redirect to the Google Pay URL
             window.location.href = url;
