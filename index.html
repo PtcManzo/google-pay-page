@@ -11,13 +11,22 @@
     <button onclick="redirectToGooglePay(140)">Pay Rs 140</button>
     <button onclick="redirectToGooglePay(170)">Pay Rs 170</button>
 
+    <p id="instructions-android" style="display: none;">Please open the Google Pay app on your Android device and complete the payment using the UPI ID: kitlangkisutnga111@okaxis</p>
+    <p id="instructions-ios" style="display: none;">Please open the Google Pay app on your iOS device and complete the payment using the UPI ID: kitlangkisutnga111@okaxis</p>
+
     <script>
         function redirectToGooglePay(amount) {
-            // Construct the Google Pay UPI URL with the amount
-            var url = "upi://pay?pa=kitlangkisutnga111@okaxis&pn=RecipientName&am=" + amount + "&cu=INR";
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-            // Redirect to the Google Pay URL
-            window.location.href = url;
+            // Check if the user agent indicates Android or iOS
+            if (/android/i.test(userAgent)) {
+                document.getElementById("instructions-android").style.display = "block";
+            } else if (/iPad|iPhone|iPod/i.test(userAgent)) {
+                document.getElementById("instructions-ios").style.display = "block";
+            } else {
+                // For other devices or browsers, you can provide a generic message
+                alert("To make a payment, please open the Google Pay app on your device and use the UPI ID: kitlangkisutnga111@okaxis");
+            }
         }
     </script>
 </body>
