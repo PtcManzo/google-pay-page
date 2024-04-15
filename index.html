@@ -23,6 +23,15 @@
             text-align: center;
             color: #333;
         }
+        input[type="number"] {
+            display: block;
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
         button {
             display: block;
             width: 100%;
@@ -55,10 +64,9 @@
 <body>
     <div class="container">
         <h1>Night Housie Game</h1>
-        <p>Select an amount to buy tickets:</p>
-        <button onclick="redirectToGooglePay(100)">Rs 100 - Buy 1 Get 1 Free</button>
-        <button onclick="redirectToGooglePay(140)">Rs 140 - Buy 2 Get 2 Free</button>
-        <button onclick="redirectToGooglePay(170)">Rs 170 - Buy 3 Get 3 Free</button>
+        <p>Enter the amount to buy tickets:</p>
+        <input type="number" id="amount" placeholder="Enter amount in Rs">
+        <button onclick="redirectToGooglePay()">Proceed to Pay</button>
 
         <div id="instructions-android" class="instructions">
             <p>To proceed with the payment:</p>
@@ -81,12 +89,17 @@
     </div>
 
     <script>
-        function redirectToGooglePay(amount) {
-            // Construct the Google Pay UPI URL with the amount
-            var url = "upi://pay?pa=kitlangkisutnga111@okaxis&pn=RecipientName&am=" + amount + "&cu=INR";
+        function redirectToGooglePay() {
+            var amount = document.getElementById("amount").value;
+            if (amount) {
+                // Construct the Google Pay UPI URL with the amount
+                var url = "upi://pay?pa=kitlangkisutnga111@okaxis&pn=RecipientName&am=" + amount + "&cu=INR";
 
-            // Redirect to the Google Pay URL
-            window.location.href = url;
+                // Redirect to the Google Pay URL
+                window.location.href = url;
+            } else {
+                alert("Please enter the amount to proceed.");
+            }
         }
     </script>
 </body>
